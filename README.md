@@ -1,89 +1,66 @@
 # react-impact
 
-**react-impact** is an open-source CLI tool designed to **analyze, track, and improve React build and deployment pipelines**. It helps developers identify which components are affected by code changes, provides reproducible Docker environments, and integrates easily with CI/CD workflows.
+react-impact is a lightweight CLI prototype for scanning a React project and producing a first-pass dependency impact report. It is intentionally minimal right now: it walks a directory, collects `.js` and `.jsx` files, and outputs a placeholder analysis structure. The goal is to evolve this into a real impact-analysis tool for React build and deployment workflows.
 
-> ⚠️ **Work in progress** – actively being developed
-# React Impact Demo
+## Status
 
-This is a sample React project for testing `react-impact`.
+This repository is a work in progress. The current CLI focuses on file discovery and a stub analysis pipeline. The results are not yet used to determine real component impact.
 
-## Run the app
-```bash
-cd examples/react-impact
-npm install
-npm start
+## What It Does Today
 
+- Recursively scans a project directory for `.js` and `.jsx` files
+- Emits a JSON-like analysis array with placeholder `affectedComponents`
+- Provides a simple CLI interface for the `analyze` command
 
-## Features
+## Quick Start
 
-- Analyze React projects to identify **affected components** after changes
-- Generate **reproducible Docker environments** for testing and development
-- Integrate with **CI/CD pipelines** for automated builds and testing
-- CLI-based interface for quick project insights
-- Observability-focused: logs and metrics for builds
+Prerequisites:
 
----
+- Node.js (no external dependencies required)
 
-## Installation
-
-Clone the repository and install dependencies:
+Run the CLI locally:
 
 ```bash
-git clone https://github.com/yourusername/react-impact.git
-cd react-impact
-npm install
+node src/cli.js analyze /path/to/your/react-project
+```
 
-### Usage
-CLI
-# Analyze a React project
-npx react-impact analyze ./my-project
+If you omit the path, it uses the current working directory:
 
+```bash
+node src/cli.js analyze
+```
 
-Future commands will allow more granular operations like impact-tree, report, and dockerize.
+Example output (shape):
 
-Docker
-# Build a reproducible Docker environment
-docker build -t react-impact ./docker
-docker run --rm -v $(pwd)/my-project:/app react-impact analyze /app
+```text
+Analyzing project at /path/to/project ...
+Analysis Result: [ { file: '/path/to/project/src/App.jsx', affectedComponents: [] }, ... ]
+```
 
-### Development
+## Project Structure
 
-Clone the repository
-
-Install dependencies: npm install
-
-Run tests: npm test
-
-Run CLI locally: node src/cli.js
+- `src/cli.js` CLI entry point and command routing
+- `src/utils/fileScanner.js` recursive file discovery
+- `src/utils/dependencyTree.js` placeholder analysis implementation
 
 ## Roadmap
 
- Detailed dependency impact analysis
-
- Integrate Prometheus metrics for CI/CD pipelines
-
- Improve Docker reproducibility for different environments
-
- Add Vue & Vite support
-
- Publish as an npm package
+- Real dependency graph construction (imports, exports, and component usage)
+- Impact propagation and change-set reporting
+- JSON and human-readable report formats
+- Optional CI-friendly output modes
+- Dockerized environment for consistent analysis
 
 ## Contributing
 
-Contributions are welcome!
-
-Open an issue to suggest improvements or report bugs
-
-Submit a pull request for code changes
+Contributions are welcome. If you want to help, open an issue with a proposal or submit a focused pull request. Since the current implementation is intentionally minimal, please describe the problem you are solving and how it fits the roadmap.
 
 ## License
 
-This project is licensed under the MIT License – see LICENSE
- for details.
+MIT. See `LICENSE`.
 
 ## About the Author
 
-Irena Popova – Full-Stack Developer & DevOps enthusiast
-Website: irenapopova.com
-
+Irena Popova – Full-Stack Developer & DevOps enthusiast  
+Website: irenapopova.com  
 Focus: React, Docker, Kubernetes, CI/CD, GitOps, Observability
