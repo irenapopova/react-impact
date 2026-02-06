@@ -1,0 +1,25 @@
+{
+  "name": "react-impact",
+  "author": "Irena Popova",
+  "version": "1.0.0",
+  "description": "react-impact is a lightweight CLI prototype for scanning a React project and producing a first-pass dependency impact report. It is intentionally minimal right now: it walks a directory, collects `.js` and `.jsx` files, and outputs a placeholder analysis structure. The goal is to evolve this into a real impact-analysis tool for React build and deployment workflows.",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/irenapopova/react-impact.git"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/irenapopova/react-impact/issues"
+  },
+  "homepage": "https://github.com/irenapopova/react-impact#readme"
+}
