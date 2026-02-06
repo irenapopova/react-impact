@@ -9,7 +9,9 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run test:jest && npm run test:mocha",
+    "test:jest": "jest",
+    "test:mocha": "mocha \"tests/**/*.mocha.js\""
   },
   "repository": {
     "type": "git",
@@ -21,5 +23,10 @@
   "bugs": {
     "url": "https://github.com/irenapopova/react-impact/issues"
   },
-  "homepage": "https://github.com/irenapopova/react-impact#readme"
+  "homepage": "https://github.com/irenapopova/react-impact#readme",
+  "devDependencies": {
+    "chai": "^6.2.2",
+    "jest": "^30.2.0",
+    "mocha": "^11.7.5"
+  }
 }

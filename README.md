@@ -9,7 +9,8 @@ This repository is a work in progress. The current CLI focuses on file discovery
 ## What It Does Today
 
 - Recursively scans a project directory for `.js` and `.jsx` files
-- Emits a JSON-like analysis array with placeholder `affectedComponents`
+- Builds a basic local import dependency graph (ESM `import`, CommonJS `require`)
+- Reports `dependencies`, `dependents`, and a first-pass `affectedComponents` list
 - Provides a simple CLI interface for the `analyze` command
 
 ## Quick Start
@@ -34,14 +35,39 @@ Example output (shape):
 
 ```text
 Analyzing project at /path/to/project ...
-Analysis Result: [ { file: '/path/to/project/src/App.jsx', affectedComponents: [] }, ... ]
+Analysis Result: [ { file: '/path/to/project/src/App.jsx', dependencies: [...], dependents: [...], affectedComponents: [...] }, ... ]
 ```
 
 ## Project Structure
 
 - `src/cli.js` CLI entry point and command routing
 - `src/utils/fileScanner.js` recursive file discovery
-- `src/utils/dependencyTree.js` placeholder analysis implementation
+- `src/utils/dependencyTree.js` local import dependency analysis
+- `tests/` Jest + Mocha test suites and fixtures
+
+## Testing
+
+Run all tests (Jest + Mocha):
+
+```bash
+npm test
+```
+
+Jest only:
+
+```bash
+npm run test:jest
+```
+
+Mocha only:
+
+```bash
+npm run test:mocha
+```
+
+## CI
+
+GitHub Actions runs the test suite on pushes and pull requests to `main`.
 
 ## Roadmap
 
