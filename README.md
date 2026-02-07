@@ -69,6 +69,20 @@ npm run test:mocha
 
 GitHub Actions runs the test suite on pushes and pull requests to `main`.
 
+## Docker
+
+Build the image:
+
+```bash
+docker build -t react-impact .
+```
+
+Run analysis against a local project by mounting it into the container:
+
+```bash
+docker run --rm -v /absolute/path/to/your/react-project:/project react-impact analyze /project
+```
+
 ## Roadmap
 
 - Real dependency graph construction (imports, exports, and component usage)

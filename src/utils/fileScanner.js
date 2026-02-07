@@ -8,14 +8,34 @@ const path = require("path");
  */
 function scanProject(dir) {
   let results = [];
-  const list = fs.readdirSync(dir);
+  let list = [];
+  try {
+    list = fs.readdirSync(dir);
+  } catch (error) {
+    return results;
+  }
 
   list.forEach((file) => {
     file = path.join(dir, file);
-    const stat = fs.statSync(file);
-    if (stat && stat.isDirectory()) {
+    let stat;
+    try {
+      stat = fs.lstatSync(file);
+    } catch (error) {
+      return;
+    }
+
+    if (stat.isSymbolicLink()) return;
+
+    if (stat.isDirectory()) {
+      const base = path.basename(file);
+      if (base === "node_modules" || base === ".git" || base === "venv" || base === "__pycache__") {
+        return;
+      }
       results = results.concat(scanProject(file));
-    } else if (file.endsWith(".js") || file.endsWith(".jsx")) {
+      return;
+    }
+
+    if (file.endsWith(".js") || file.endsWith(".jsx") || file.endsWith(".ts") || file.endsWith(".tsx")) {
       results.push(file);
     }
   });

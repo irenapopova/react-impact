@@ -25,8 +25,12 @@ function resolveImportPath(fromFile, specifier) {
     base,
     `${base}.js`,
     `${base}.jsx`,
+    `${base}.ts`,
+    `${base}.tsx`,
     path.join(base, "index.js"),
     path.join(base, "index.jsx"),
+    path.join(base, "index.ts"),
+    path.join(base, "index.tsx"),
   ];
 
   for (const candidate of candidates) {
