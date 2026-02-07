@@ -17,6 +17,7 @@ const projectPath = args[1] ? path.resolve(args[1]) : process.cwd();
 const outputIndex = args.indexOf("--output");
 const formatIndex = args.indexOf("--format");
 const changedIndex = args.indexOf("--changed");
+const noDefaultIgnore = args.includes("--no-default-ignore");
 const outputPath = outputIndex !== -1 ? args[outputIndex + 1] : null;
 const format = formatIndex !== -1 ? args[formatIndex + 1] : "json";
 
@@ -135,7 +136,7 @@ function formatResult(result, fmt, options = {}) {
 
 if (command === "analyze") {
   console.log(`Analyzing project at ${projectPath} ...`);
-  const files = scanProject(projectPath);
+  const files = scanProject(projectPath, { useDefaults: !noDefaultIgnore });
   const result = analyzeDependencies(files);
   const changedArgs = collectChangedArgs(args, changedIndex);
   const changedFiles = resolveChangedFiles(changedArgs, files);

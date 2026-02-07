@@ -12,6 +12,7 @@ This repository is a work in progress. The current CLI focuses on file discovery
 - Builds a basic local import dependency graph (ESM `import`, CommonJS `require`)
 - Reports `dependencies`, `dependents`, and a first-pass `affectedComponents` list
 - Provides a simple CLI interface for the `analyze` command
+- Skips common generated folders by default: `node_modules`, `.git`, `.cache`, `public`, `venv`, `__pycache__`
 
 ## Quick Start
 
@@ -51,6 +52,11 @@ node src/cli.js analyze /path/to/project --changed src/pages/index.js
 ```
 
 Tip: use `--format text` for a readable summary with relative paths and separate Changed/Impacted sections.
+
+Ignore rules:
+
+- Add project-specific patterns in `.react-impactignore` (merged with built-in defaults)
+- Disable built-in defaults with `--no-default-ignore`
 
 Example output (shape):
 
