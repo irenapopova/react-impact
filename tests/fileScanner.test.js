@@ -8,4 +8,5 @@ test("scanProject finds js/jsx files in a folder", () => {
   expect(files.some((f) => f.endsWith("Utils.js"))).toBe(true);
   expect(files.some((f) => f.endsWith("Component.tsx"))).toBe(true);
   expect(files.some((f) => f.endsWith("README.txt"))).toBe(false);
+  expect(files.some((f) => f.endsWith("Hidden.js"))).toBe(false);
 });

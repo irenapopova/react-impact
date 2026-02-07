@@ -31,6 +31,27 @@ If you omit the path, it uses the current working directory:
 node src/cli.js analyze
 ```
 
+Optional output formats:
+
+```bash
+node src/cli.js analyze /path/to/project --format json
+node src/cli.js analyze /path/to/project --format text
+```
+
+Write output to a file:
+
+```bash
+node src/cli.js analyze /path/to/project --format json --output report.json
+```
+
+Change-set mode (show only impacted files based on a list of changed files):
+
+```bash
+node src/cli.js analyze /path/to/project --changed src/pages/index.js
+```
+
+Tip: use `--format text` for a readable summary with relative paths and separate Changed/Impacted sections.
+
 Example output (shape):
 
 ```text
